@@ -131,11 +131,74 @@ function createEngineer () {
     .then(result => {
         const engineer = new Engineer (result.name, result.id, result.email, result.gitHub);
         team.push(engineer);
-        console.log(team);
+        // console.log(team);
         createTeam();
     })
     
-}
+};
+
+function createIntern () {
+    inquirer.prompt ([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Please enter the Intern's name:",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the Intern's email address:",
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter the Intern's ID:",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter the Intern's school:",
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(result => {
+        const intern = new Intern (result.name, result.email, result.id, result.school);
+        team.push(intern);
+        console.log(team);
+        createTeam();
+    })
+};
+
+// function createTeamPage () {
+
+// };
 
 function createTeam () {
     inquirer.prompt([
@@ -143,13 +206,19 @@ function createTeam () {
             type: 'list',
             name: 'add',
             message: 'Who would you like to add to the team?',
-            choices: ["Engineer", "Intern", "exit"]
+            choices: ["Engineer", "Intern", "Finished"]
         }
     ])
     .then(result => {
         if (result.add === "Engineer") {
             createEngineer();
         }
+        if (result.add === "Intern") {
+            createIntern();
+        }
+        // if (result.add === "Finished") {
+        //     createTeamPage();
+        // }
     });
 };
 
