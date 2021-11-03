@@ -4,7 +4,7 @@
   ## Description
   This project is a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage to display a summary for each person. 
 
-  * [Demonstration Video](undefined)
+  * [Demonstration Video](https://watch.screencastify.com/v/HOzMMVFoJUA2vxoElFpJ)
   
   ***************************************************************
   ## Table of Contents
@@ -16,10 +16,10 @@
 * [Questions](#questions)
 ***************************************************************
 ## Installation
-Clone the project repository from GitHub, install Node.js and dependencies required.
+Clone the project repository from GitHub to your local machine, install Node.js and dependencies required.
   
 ## Usage
-  With all dependencies installed, start the application from the command-line using 'node index.js'.
+  With all dependencies installed, start the application from the command-line using 'node index.js'. Prompts will ask for input regarding the team's employees.
   
 ## License
   This project is covered under the MIT license. 
@@ -29,7 +29,7 @@ Clone the project repository from GitHub, install Node.js and dependencies requi
   Please contact me for information about contributing.
 
 ## Tests
-  TBD
+  Jest is used for tests in this application. The tests check that all objects are properly created (employee, manager, engineer, intern).
 
 ## Questions
   For any questions regarding this project, please contact me via email (Benrowentv@gmail.com).

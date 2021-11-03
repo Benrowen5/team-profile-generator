@@ -199,8 +199,10 @@ function createIntern () {
     })
 };
 
+// uses all input team data in the team array to populate the pageTemplate file and generate a new team index.html page
 function createTeamPage () {
     return new Promise((resolve, reject) => {
+        // newly created file will be create in the dist/ folder
         fs.writeFileSync('./dist/index.html', render(team), err => {
             // if there's an error, reject the promise and send the error to the promise's .catch() method
             if (err) {
