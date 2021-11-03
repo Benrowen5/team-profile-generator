@@ -9,11 +9,11 @@ const render = require('./src/pageTemplate');
 
 const team = [];
 
-
+// Main application which runs at startup
 function runApp() {
-
     // when application starts, enter team manager information
     function createManager () {
+        // inquirer prompt for manager information
         inquirer.prompt([
             {
                 type: 'input',
@@ -64,20 +64,21 @@ function runApp() {
                 }
             }
         ])
+        // create new manager object using input data
         .then(responses => {
             const manager = new Manager (responses.name, responses.id, responses.email, responses.officeNumber);
-
+            // add new manager object to team array
             team.push(manager);
             // console.log(team);
+            // call for main menu of application for desired next step
             createTeam();
         })
     };
-
     // when application starts, enter team manager information 
     createManager();
-
 };
 
+// create a new engineer object when selected from the main application's menu
 function createEngineer () {
     inquirer.prompt([
         {
@@ -129,15 +130,16 @@ function createEngineer () {
             }
         }
     ])
+    // create new engineer object using input data
     .then(result => {
         const engineer = new Engineer (result.name, result.id, result.email, result.gitHub);
         team.push(engineer);
         // console.log(team);
         createTeam();
     })
-    
 };
 
+// create a new intern object when selected from the main application's menu
 function createIntern () {
     inquirer.prompt ([
         {
@@ -192,7 +194,7 @@ function createIntern () {
     .then(result => {
         const intern = new Intern (result.name, result.id, result.email, result.school);
         team.push(intern);
-        console.log(team);
+        // console.log(team);
         createTeam();
     })
 };
@@ -215,7 +217,9 @@ function createTeamPage () {
     });
 };
 
+// 'Main menu' of the application
 function createTeam () {
+    // prompts for what the user wants to do next
     inquirer.prompt([
         {
             type: 'list',
@@ -224,6 +228,7 @@ function createTeam () {
             choices: ["Engineer", "Intern", "Finished"]
         }
     ])
+    // based on user input, calls the relevant function
     .then(result => {
         if (result.add === "Engineer") {
             createEngineer();
