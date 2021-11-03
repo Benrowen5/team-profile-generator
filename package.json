@@ -2,5 +2,26 @@
   "dependencies": {
     "inquirer": "^8.2.0",
     "jest": "^27.3.1"
-  }
+  },
+  "name": "team-profile-generator",
+  "description": "![License](https://img.shields.io/badge/license-MIT-blue)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benrowen5/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Benrowen5/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Benrowen5/team-profile-generator#readme"
 }
