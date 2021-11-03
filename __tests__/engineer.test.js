@@ -1,23 +1,23 @@
-const Employee = require('./Employee');
-const Engineer = require('./Engineer');
+const Employee = require('../lib/Employee');
+const Engineer = require('../lib/Engineer');
 
-test('creates a Manager object', () => {
-    const manager = new Manager('Jerry', 5, 'jerry@aol.com', 55);
+test('creates an Engineer object', () => {
+    const engineer = new Engineer('Jerry', 5, 'jerry@aol.com', 'jerry5');
  
-    expect(manager.name).toBe('Jerry');
-    expect(manager.id).toEqual(5);
-    expect(manager.email).toBe('jerry@aol.com');
-    expect(manager.officeNumber).toEqual(55);
+    expect(engineer.name).toBe('Jerry');
+    expect(engineer.id).toEqual(5);
+    expect(engineer.email).toBe('jerry@aol.com');
+    expect(engineer.gitHub).toEqual('jerry5');
  });
  
- test("Gets manager's officeNumber", () => {
-     const manager = new Manager('Jerry', 5, 'jerry@aol.com', 55);
+ test("Gets engineer's GitHub", () => {
+     const engineer = new Engineer('Jerry', 5, 'jerry@aol.com', 'jerry5');
  
-     expect(manager.getOfficeNumber()).toEqual(55);
+     expect(engineer.getGitHub()).toEqual('jerry5');
  });
  
  test("Gets manager's role", () => {
-     const manager = new Manager('Jerry', 5, 'jerry@aol.com', 55);
+     const engineer = new Engineer('Jerry', 5, 'jerry@aol.com', 'jerry5');
  
-     expect(manager.getRole()).toBe('Manager');
+     expect(engineer.getRole()).toBe('Engineer');
  });
