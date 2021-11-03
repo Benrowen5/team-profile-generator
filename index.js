@@ -1,4 +1,5 @@
-const inquirer = require('inquirer');
+const inquirer = require('inquirer')
+const fs = require('fs');
 
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
@@ -64,7 +65,7 @@ function runApp() {
             }
         ])
         .then(responses => {
-            const manager = new Manager (responses.name, responses.email, responses.id, responses.officeNumber);
+            const manager = new Manager (responses.name, responses.id, responses.email, responses.officeNumber);
 
             team.push(manager);
             // console.log(team);
@@ -189,16 +190,30 @@ function createIntern () {
         }
     ])
     .then(result => {
-        const intern = new Intern (result.name, result.email, result.id, result.school);
+        const intern = new Intern (result.name, result.id, result.email, result.school);
         team.push(intern);
         console.log(team);
         createTeam();
     })
 };
 
-// function createTeamPage () {
-
-// };
+function createTeamPage () {
+    return new Promise((resolve, reject) => {
+        fs.writeFileSync('./dist/index.html', render(team), err => {
+            // if there's an error, reject the promise and send the error to the promise's .catch() method
+            if (err) {
+                reject(err);
+                return;
+            }
+            // if no errors, resolve the promise and send the successful to the .then() method
+            resolve({
+                ok: true,
+                message: 'Team page created!'
+            });
+        });
+        console.log('New team page created!');
+    });
+};
 
 function createTeam () {
     inquirer.prompt([
@@ -216,9 +231,9 @@ function createTeam () {
         if (result.add === "Intern") {
             createIntern();
         }
-        // if (result.add === "Finished") {
-        //     createTeamPage();
-        // }
+        if (result.add === "Finished") {
+            createTeamPage();
+        }
     });
 };
 
