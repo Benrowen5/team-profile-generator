@@ -8,13 +8,81 @@ const render = require('./src/pageTemplate');
 
 const team = [];
 
-// when application starts, enter team manager information
-function createManager () {
+
+function runApp() {
+
+    // when application starts, enter team manager information
+    function createManager () {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: "Please enter the manager's name:",
+                validate: nameInput => {
+                    if (nameInput) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: "Please enter the manager's email address:",
+                validate: emailInput => {
+                    if (emailInput) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: "Please enter the manager's ID:",
+                validate: idInput => {
+                    if (idInput) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'officeNumber',
+                message: "Please enter the manager's office number:",
+                validate: officeInput => {
+                    if (officeInput) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        ])
+        .then(responses => {
+            const manager = new Manager (responses.name, responses.email, responses.id, responses.officeNumber);
+
+            team.push(manager);
+            // console.log(team);
+            createTeam();
+        })
+    };
+
+    // when application starts, enter team manager information 
+    createManager();
+
+};
+
+function createEngineer () {
     inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: "Please enter the manager's name:",
+            message: "Please enter the Engineer's name:",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -26,7 +94,7 @@ function createManager () {
         {
             type: 'input',
             name: 'email',
-            message: "Please enter the manager's email address:",
+            message: "Please enter the Engineer's email address:",
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -38,7 +106,7 @@ function createManager () {
         {
             type: 'input',
             name: 'id',
-            message: "Please enter the manager's ID:",
+            message: "Please enter the Engineer's ID:",
             validate: idInput => {
                 if (idInput) {
                     return true;
@@ -49,10 +117,10 @@ function createManager () {
         },
         {
             type: 'input',
-            name: 'officeNumber',
-            message: "Please enter the manager's office number:",
-            validate: officeInput => {
-                if (officeInput) {
+            name: 'gitHub',
+            message: "Please enter the Engineer's GitHub username:",
+            validate: gitHubInput => {
+                if (gitHubInput) {
                     return true;
                 } else {
                     return false;
@@ -60,13 +128,14 @@ function createManager () {
             }
         }
     ])
-    .then(responses => {
-        const manager = new Manager (responses.name, responses.email, responses.id, responses.officeNumber);
-
-        team.push(manager);
+    .then(result => {
+        const engineer = new Engineer (result.name, result.id, result.email, result.gitHub);
+        team.push(engineer);
         console.log(team);
+        createTeam();
     })
-};
+    
+}
 
 function createTeam () {
     inquirer.prompt([
@@ -84,8 +153,4 @@ function createTeam () {
     });
 };
 
-// function createManager() {
-//     console.log(`you selected manager`);
-// };
-
-createManager();
+runApp();
