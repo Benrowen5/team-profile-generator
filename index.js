@@ -209,7 +209,7 @@ function createTeamPage () {
                 reject(err);
                 return;
             }
-            // if no errors, resolve the promise and send the successful to the .then() method
+            // if no errors, resolve the promise
             resolve({
                 ok: true,
                 message: 'Team page created!'
