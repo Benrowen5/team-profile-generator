@@ -6,6 +6,8 @@ const Intern = require('./lib/Intern.js');
 
 const render = require('./src/pageTemplate');
 
+const team = [];
+
 // when application starts, enter team manager information
 function createManager () {
     inquirer.prompt([
@@ -60,28 +62,27 @@ function createManager () {
     ])
     .then(responses => {
         const manager = new Manager (responses.name, responses.email, responses.id, responses.officeNumber);
-        // console.log(manager);
+
+        team.push(manager);
+        console.log(team);
     })
+};
 
-    
-}
-
-
-// function createTeam () {
-//     inquirer.prompt([
-//         {
-//             type: 'list',
-//             name: 'add',
-//             message: 'Who would you like to add to the team?',
-//             choices: ["Manager", "Engineer", "Intern"]
-//         }
-//     ])
-//     .then(result => {
-//         if (result.add === "Manager") {
-//             createManager();
-//         }
-//     });
-// };
+function createTeam () {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'add',
+            message: 'Who would you like to add to the team?',
+            choices: ["Engineer", "Intern", "exit"]
+        }
+    ])
+    .then(result => {
+        if (result.add === "Engineer") {
+            createEngineer();
+        }
+    });
+};
 
 // function createManager() {
 //     console.log(`you selected manager`);
